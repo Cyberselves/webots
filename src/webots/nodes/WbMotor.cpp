@@ -396,12 +396,12 @@ void WbMotor::setForceOrTorque(double forceOrTorque) {
 
   mRawInput = forceOrTorque * multiplier();
   if (fabs(mRawInput) > mMotorForceOrTorque) {
-    if (mCoupledMotors.size() == 0) {  // silence warning for coupled motors
-      if (nodeType() == WB_NODE_ROTATIONAL_MOTOR)
+    //if (mCoupledMotors.size() == 0) {  // silence warning for coupled motors
+      //if (nodeType() == WB_NODE_ROTATIONAL_MOTOR)
         // warn(tr("The requested motor torque %1 exceeds 'maxTorque' = %2").arg(mRawInput).arg(mMotorForceOrTorque));
-      else
+      //else
         // warn(tr("The requested motor force %1 exceeds 'maxForce' = %2").arg(mRawInput).arg(mMotorForceOrTorque));
-    }
+    //}
 
     mRawInput = mRawInput >= 0.0 ? mMotorForceOrTorque : -mMotorForceOrTorque;
   }
@@ -415,12 +415,12 @@ void WbMotor::setAvailableForceOrTorque(double availableForceOrTorque) {
 
   const double m = mMaxForceOrTorque->value();
   if (mMotorForceOrTorque > m) {
-    if (mCoupledMotors.size() == 0) {  // silence warning for coupled motors
-      if (nodeType() == WB_NODE_ROTATIONAL_MOTOR)
+    //if (mCoupledMotors.size() == 0) {  // silence warning for coupled motors
+    //  if (nodeType() == WB_NODE_ROTATIONAL_MOTOR)
         // warn(tr("The requested available motor torque %1 exceeds 'maxTorque' = %2").arg(mMotorForceOrTorque).arg(m));
-      else
+    //  else
         // warn(tr("The requested available motor force %1 exceeds 'maxForce' = %2").arg(mMotorForceOrTorque).arg(m));
-    }
+    //}
     mMotorForceOrTorque = m;
   }
   awake();
