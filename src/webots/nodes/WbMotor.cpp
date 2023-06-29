@@ -360,10 +360,10 @@ void WbMotor::setTargetPosition(double position) {
   if (maxp != minp && !velocityControl) {
     if (mTargetPosition > maxp) {
       mTargetPosition = maxp;
-      warn(QString("too big requested position: %1 > %2").arg(position).arg(maxp));
+      // warn(QString("too big requested position: %1 > %2").arg(position).arg(maxp));
     } else if (mTargetPosition < minp) {
       mTargetPosition = minp;
-      warn(QString("too low requested position: %1 < %2").arg(position).arg(minp));
+      // warn(QString("too low requested position: %1 < %2").arg(position).arg(minp));
     }
   }
 
@@ -376,7 +376,7 @@ void WbMotor::setVelocity(double velocity) {
 
   const double m = mMaxVelocity->value();
   if (fabs(mTargetVelocity) > m) {
-    warn(tr("The requested velocity %1 exceeds 'maxVelocity' = %2.").arg(mTargetVelocity).arg(m));
+    // warn(tr("The requested velocity %1 exceeds 'maxVelocity' = %2.").arg(mTargetVelocity).arg(m));
     mTargetVelocity = mTargetVelocity >= 0.0 ? m : -m;
   }
 
@@ -398,9 +398,9 @@ void WbMotor::setForceOrTorque(double forceOrTorque) {
   if (fabs(mRawInput) > mMotorForceOrTorque) {
     if (mCoupledMotors.size() == 0) {  // silence warning for coupled motors
       if (nodeType() == WB_NODE_ROTATIONAL_MOTOR)
-        warn(tr("The requested motor torque %1 exceeds 'maxTorque' = %2").arg(mRawInput).arg(mMotorForceOrTorque));
+        // warn(tr("The requested motor torque %1 exceeds 'maxTorque' = %2").arg(mRawInput).arg(mMotorForceOrTorque));
       else
-        warn(tr("The requested motor force %1 exceeds 'maxForce' = %2").arg(mRawInput).arg(mMotorForceOrTorque));
+        // warn(tr("The requested motor force %1 exceeds 'maxForce' = %2").arg(mRawInput).arg(mMotorForceOrTorque));
     }
 
     mRawInput = mRawInput >= 0.0 ? mMotorForceOrTorque : -mMotorForceOrTorque;
@@ -417,9 +417,9 @@ void WbMotor::setAvailableForceOrTorque(double availableForceOrTorque) {
   if (mMotorForceOrTorque > m) {
     if (mCoupledMotors.size() == 0) {  // silence warning for coupled motors
       if (nodeType() == WB_NODE_ROTATIONAL_MOTOR)
-        warn(tr("The requested available motor torque %1 exceeds 'maxTorque' = %2").arg(mMotorForceOrTorque).arg(m));
+        // warn(tr("The requested available motor torque %1 exceeds 'maxTorque' = %2").arg(mMotorForceOrTorque).arg(m));
       else
-        warn(tr("The requested available motor force %1 exceeds 'maxForce' = %2").arg(mMotorForceOrTorque).arg(m));
+        // warn(tr("The requested available motor force %1 exceeds 'maxForce' = %2").arg(mMotorForceOrTorque).arg(m));
     }
     mMotorForceOrTorque = m;
   }
